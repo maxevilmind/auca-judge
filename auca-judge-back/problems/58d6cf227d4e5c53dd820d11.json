@@ -1,5 +1,4 @@
 {
-  "_id": "58d6cf227d4e5c53dd820d11",
   "build": {
     "image": "toksaitov/auca-judge-images:swift-build",
     "extension": ".swift"
@@ -47,14 +46,14 @@
       }
     ]
   },
-  "name": "Problem #1: Sum of Numbers (C)",
+  "name": "Problem #1: Sum of Numbers (Swift)",
   "description": "Find a sum of two numbers.",
   "inputDataDescription": "The program will receive two numbers on separate lines on standard input.",
   "outputDataDescription": "The program should output the sum of two numbers to standard output.",
   "examples": [
     { 
-      "sampleInput": "2 2",
-      "desiredOutput": "4"
+      "sampleInput": "1 2",
+      "desiredOutput": "3"
     }
   ] 
 }

@@ -1,5 +1,4 @@
 {
-  "_id": "572709f8d12a816dfbde7a8b",
   "build": {
     "image": "toksaitov/auca-judge-images:c-build",
     "extension": ".c"
@@ -53,8 +52,8 @@
   "outputDataDescription": "The program should output the sum of two numbers to standard output.",
   "examples": [
     {
-      "sampleInput": "2 2",
-      "desiredOutput": "4"
+      "sampleInput": "1 2",
+      "desiredOutput": "3"
     }
   ]
 }
