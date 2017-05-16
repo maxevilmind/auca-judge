@@ -1,5 +1,5 @@
 {
-  "_id": { "$oid": "572709f8d12a816dfbde7a8b" },
+  "_id": "572709f8d12a816dfbde7a8b",
   "build": {
     "image": "toksaitov/auca-judge-images:c-build",
     "extension": ".c"
@@ -46,5 +46,15 @@
         "output": "-9223372036854775808"
       }
     ]
-  }
+  },
+  "name": "Problem #1: Sum of Numbers (C)",
+  "description": "Find a sum of two numbers.",
+  "inputDataDescription": "The program will receive two numbers on separate lines on standard input.",
+  "outputDataDescription": "The program should output the sum of two numbers to standard output.",
+  "examples": [
+    {
+      "sampleInput": "2 2",
+      "desiredOutput": "4"
+    }
+  ]
 }

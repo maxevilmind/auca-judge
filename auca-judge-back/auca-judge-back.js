@@ -13,6 +13,10 @@ const os =
 
 const express =
   require("express");
+var multer  =
+  require('multer');
+var upload = 
+  multer({ storage: multer.memoryStorage({}) })
 const bodyParser =
   require("body-parser");
 const redis =
@@ -86,11 +90,11 @@ const Docker =
 
 const BuildAgentConnectionOptions = {
   "port": "7742",
-  "network": "aucajudge_default"
+  "network": "aucaaucajudge_default"
 };
 const TestAgentConnectionOptions = {
   "port": "7742",
-  "network": "aucajudge_default"
+  "network": "aucaaucajudge_default"
 };
 
 const Logger =
@@ -325,6 +329,50 @@ function getContainerURL(connectionOptions, containerData) {
 Server.use(bodyParser.urlencoded({
   "extended": true
 }));
+
+Server.post("/problems", upload.single('problem'), (request, response) => {
+  try {
+    let problem =
+      JSON.parse(request.file.buffer.toString('utf8'));
+    saveProblem(0, problem, (error => { 
+      if (error) {
+        response.status(400).json({
+           "error": "Some error has occured during the uploading of a problem: " + error
+        });
+        return;
+      }
+      response.status(201).json();
+    }));
+  } catch (error) {
+    response.status(400).json({
+      "error": "Some error has occured during the uploading of a problem: " + error
+    });
+    return;
+  }
+});
+
+Server.delete("/problems", (request, response) => {
+  let Problem =
+    ProblemDatabase.model("Problem");
+  Problem.collection.drop();
+  response.status(200).json();
+});
+
+Server.get("/problems", (request, response) => {
+  let Problem =
+    ProblemDatabase.model("Problem");
+
+  Problem.find((error, problems) => {
+    if (error) {
+      Logger.error("Some error has occured during the retrievement of problems.");
+      response.status(400).json({
+        "error": "Some error has occured during the retrievement of problems."
+      });
+    } else {
+      response.status(200).json(problems);
+    }
+  });
+});
 
 Server.post("/submit", (request, response) => {
   if (SubmissionsInProgress + 1 > SubmissionsInProgressLimit) {
