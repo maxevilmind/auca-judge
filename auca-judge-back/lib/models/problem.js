@@ -41,6 +41,18 @@ const TestConfigurationSchema =
     }
   });
 
+const InputOutputExampleSchema =
+  new mongoose.Schema({
+    "sampleInput": {
+      "type": String,
+      "required": true
+    },
+    "desiredOutput": {
+      "type": String,
+      "required": true
+    }
+  });
+  
 const ProblemSchema =
   new mongoose.Schema({
     "build": {
@@ -49,7 +61,24 @@ const ProblemSchema =
     "test": {
       "type": TestConfigurationSchema,
       "required": true
-    }
+    },
+	"name": {
+      "type": String,
+      "required": true
+    },
+    "description": {
+      "type": String,
+      "required": true
+    },
+    "inputDataDescription": {
+      "type": String,
+      "required": true
+    },
+    "outputDataDescription": {
+      "type": String,
+      "required": true
+    },
+    "examples": [InputOutputExampleSchema]
   });
 
 module.exports =
